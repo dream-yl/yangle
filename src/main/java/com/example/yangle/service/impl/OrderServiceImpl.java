@@ -1,13 +1,5 @@
 package com.example.yangle.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.example.yangle.entity.Address;
 import com.example.yangle.entity.CartVO;
 import com.example.yangle.entity.Order;
@@ -17,12 +9,14 @@ import com.example.yangle.service.IAddressService;
 import com.example.yangle.service.ICartService;
 import com.example.yangle.service.IOrderService;
 import com.example.yangle.service.IProductService;
-import com.example.yangle.service.ex.AddressNotFoundException;
-import com.example.yangle.service.ex.CartNotFoundException;
-import com.example.yangle.service.ex.InsertException;
-import com.example.yangle.service.ex.OrderNotFoundException;
-import com.example.yangle.service.ex.ServiceException;
-import com.example.yangle.service.ex.UpdateException;
+import com.example.yangle.service.ex.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements IOrderService {
@@ -39,6 +33,7 @@ public class OrderServiceImpl implements IOrderService {
   @Autowired
   IProductService productService;
 
+  @Transactional
   @Override
   public void createOrder(Integer aid, Integer[] cids, Integer uid, String username) throws ServiceException {
     // 创建当前时间的对象 now
