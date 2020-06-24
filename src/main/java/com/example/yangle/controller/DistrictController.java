@@ -23,5 +23,4 @@ public class DistrictController extends BaseController {
     List<District> list = service.listByParent(parent);
     return new JsonResult<List<District>>(SUCCESS, list);
   }
-
 }
